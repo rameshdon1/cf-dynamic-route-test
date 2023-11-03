@@ -7,14 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clearnpx": "npx clear-npx-cache",
-    "next-on-pages": "pnpm exec next-on-pages",
-    "nop": "pnpm next-on-pages",
-    "nopw": "pnpm next-on-pages -- --watch",
-    "nopm": "pnpm next-on-pages -- --experimental-minify",
-    "nopmw": "pnpm next-on-pages -- --experimental-minify --watch",
-    "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
-    "pages:dep": "npx wrangler pages deploy .vercel/output/static"
+    "db:generate": "drizzle-kit generate:sqlite",
+    "db:push": "drizzle-kit push:sqlite",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "pages:deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static",
+    "pages:watch": "npx @cloudflare/next-on-pages --watch",
+    "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-date=2023-10-25 --compatibility-flag=nodejs_compat",
+    "push": "git push origin main && git push upstream main"
   },
   "dependencies": {
     "@types/node": "20.8.7",
@@ -27,6 +26,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.7.2",
+    "eslint-plugin-next-on-pages": "^1.7.2",
     "vercel": "^32.5.0"
   }
 }
